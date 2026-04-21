@@ -19,18 +19,15 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="icon" href="uploads/logo.png" >
+    <link rel="icon" href="uploads/favicon.ico" type="image/x-icon">
   </head>
   <body>
     <!-- ══ NAV ══ -->
     <nav id="nav">
       <div class="nav-inner">
         <a href="#" class="nav-logo">
-          <img
-            src="uploads/logo.png"
-            alt="e_pozivnica.rs logo"
-          />
-          <span class="nav-brand">e_pozivnica.rs</span>
+          <img src="uploads/logo.png" alt="e_pozivnica.rs logo" />
+          <span class="nav-brand">epozivnicaorg</span>
         </a>
         <ul class="nav-links">
           <li><a href="#usluge">Usluge</a></li>
@@ -42,11 +39,11 @@
         <a href="#narudzba" class="nav-cta">Naruči →</a>
         <button
           class="hamburger"
-          aria-label="Menu"
+          aria-label="Otvori meni"
           onclick="
-            document
-              .querySelector('#narudzba')
-              .scrollIntoView({ behavior: 'smooth' })
+            var inner = document.querySelector('.nav-inner');
+            var isOpen = inner.classList.toggle('menu-open');
+            this.setAttribute('aria-label', isOpen ? 'Zatvori meni' : 'Otvori meni');
           "
         >
           <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
@@ -211,8 +208,7 @@
           </h1>
           <p class="hero-p">
             Kreiramo elegantne, personalizovane digitalne pozivnice za svaki
-            povod — od venčanja do krštenja. Šaljete ih za sekunde, pamte se
-            zauvek.
+            povod. Šaljete ih za sekunde, pamte se zauvek.
           </p>
           <div class="hero-btns">
             <a href="#narudzba" class="btn-gold">Naruči pozivnicu</a>
@@ -221,19 +217,19 @@
         </div>
         <div class="hero-visual reveal">
           <div class="aimg">
-              <div class="aimg-ph">
-                <img
-                  src="uploads/primer.jpg"
-                  alt="Rodjendanska pozivnica"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 10px;
-                  "
-                />
-              </div>
+            <div class="aimg-ph">
+              <img
+                src="uploads/primer.jpg"
+                alt="Rodjendanska pozivnica"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  border-radius: 10px;
+                "
+              />
             </div>
+          </div>
           <div class="hero-badge"><strong>100%</strong>Digitalno</div>
         </div>
       </div>
@@ -258,9 +254,8 @@
             <span class="tag">Ko smo mi</span>
             <h2 class="section-title">Pozivnice koje se pamte</h2>
             <p>
-              Smo mladi par koji je spojio ljubav prema dizajnu i posebnim
-              trenucima. Svaka pozivnica nosi pažnju, ukus i emociju — jer znamo
-              koliko svaka proslava znači.
+              Svaka pozivnica nosi pažnju, ukus i emociju — jer znamo koliko
+              svaka proslava znači.
             </p>
             <p>
               Digitalna pozivnica nije samo link — to je prvi utisak vašeg
@@ -351,8 +346,8 @@
             <div class="svc-icon">💍</div>
             <div class="svc-name">Venčanje</div>
             <div class="svc-desc">
-              Elegantna pozivnica sa odbrojavanjem, mapom, RSVP-om i svim
-              detaljima vašeg velikog dana.
+              Elegantna pozivnica sa odbrojavanjem, mapom, čekiranje prisutnosti
+              i svim detaljima vašeg velikog dana.
             </div>
           </div>
           <div class="svc reveal">
@@ -373,7 +368,7 @@
           </div>
           <div class="svc reveal">
             <div class="svc-icon">🎓</div>
-            <div class="svc-name">Maturska večera</div>
+            <div class="svc-name">Matursko veče</div>
             <div class="svc-desc">
               Elegantna pozivnica za nezaboravan kraj školovanja i početak novog
               poglavlja.
@@ -389,7 +384,7 @@
           </div>
           <div class="svc reveal">
             <div class="svc-icon">🥂</div>
-            <div class="svc-name">Devojačka / Momačka</div>
+            <div class="svc-name">Devojačko / Momačko</div>
             <div class="svc-desc">
               Vesela, personalizovana pozivnica za nezaboravno veče pred
               venčanje.
@@ -432,9 +427,7 @@
         <div class="section-head reveal">
           <span class="tag">Proces</span>
           <h2 class="section-title">Kako funkcioniše</h2>
-          <p class="section-sub">
-            Od narudžbine do gotove pozivnice za 48 sati
-          </p>
+          <p class="section-sub">Od narudžbine do gotove pozivnice</p>
         </div>
         <div class="steps reveal">
           <div class="step">
@@ -457,15 +450,15 @@
             <div class="step-n">3</div>
             <div class="step-t">Pregled i izmene</div>
             <div class="step-d">
-              Šaljemo vam preview. Radimo izmene dok niste potpuno zadovoljni.
+              Šaljemo vam na pregled. Radimo izmene dok niste potpuno
+              zadovoljni.
             </div>
           </div>
           <div class="step">
             <div class="step-n">4</div>
             <div class="step-t">Šaljete gostima</div>
             <div class="step-d">
-              Dobijate link koji delite putem WhatsApp, Viber, SMS ili
-              Instagrama.
+              Dobijate link koji delite putem društvenih mreža.
             </div>
           </div>
         </div>
@@ -479,8 +472,7 @@
           <span class="tag">Portfolio</span>
           <h2 class="section-title">Primeri naših pozivnica</h2>
           <p class="section-sub">
-            Svaka pozivnica je prava web stranica — skroluj, vidi detalje, pa
-            klikni "Otvori".
+            Svaka pozivnica je prava web stranica — skroluj i vidi detalje.
           </p>
         </div>
         <div class="preview-grid reveal">
@@ -572,10 +564,10 @@
         >
           Više primera pogledajte na Instagramu →
           <a
-            href="https://instagram.com/e_pozivnica.rs"
+            href="https://instagram.com/epozivnicaorg"
             target="_blank"
             style="color: var(--gold-d); font-weight: 600"
-            >@e_pozivnica.rs</a
+            >@epozivnicaorg</a
           >
         </p>
       </div>
@@ -610,16 +602,7 @@
               <li class="price-feat">2 revizije</li>
               <li class="price-feat">Isporuka za 48h</li>
             </ul>
-            <button
-              class="price-btn navy"
-              onclick="
-                document
-                  .querySelector('#narudzba')
-                  .scrollIntoView({ behavior: 'smooth' })
-              "
-            >
-              Odaberi Basic
-            </button>
+            <a href="#narudzba" class="price-btn navy">Odaberi Basic</a>
           </div>
 
           <!-- Standard (featured) -->
@@ -642,16 +625,7 @@
               <li class="price-feat">Neograničene revizije</li>
               <li class="price-feat">Isporuka za 24h</li>
             </ul>
-            <button
-              class="price-btn ghost"
-              onclick="
-                document
-                  .querySelector('#narudzba')
-                  .scrollIntoView({ behavior: 'smooth' })
-              "
-            >
-              Odaberi Standard
-            </button>
+            <a href="#narudzba" class="price-btn ghost">Odaberi Standard</a>
           </div>
 
           <!-- Premium -->
@@ -673,16 +647,7 @@
               <li class="price-feat">Prioritetna izrada (12h)</li>
               <li class="price-feat">3 meseca hostinga</li>
             </ul>
-            <button
-              class="price-btn navy"
-              onclick="
-                document
-                  .querySelector('#narudzba')
-                  .scrollIntoView({ behavior: 'smooth' })
-              "
-            >
-              Odaberi Premium
-            </button>
+            <a href="#narudzba" class="price-btn navy">Odaberi Premium</a>
           </div>
         </div>
         <p
@@ -693,8 +658,8 @@
             color: var(--muted);
           "
         >
-          Cene su okvirne. Za custom projekte kontaktirajte nas direktno na
-          Instagramu.
+          <!-- Cene su okvirne. Za custom projekte kontaktirajte nas direktno na
+          Instagramu. -->
         </p>
       </div>
     </section>
@@ -706,10 +671,10 @@
           <div class="order-info reveal">
             <span class="tag">Narudžbina</span>
             <h2 class="section-title">Počnite ovde</h2>
-            <p class="section-sub">
+            <!-- <p class="section-sub">
               Popunite formu sa svim detaljima vaše proslave. Javićemo vam se u
               roku od par sati.
-            </p>
+            </p> -->
             <ul class="order-bullets">
               <li class="ob">
                 <div class="ob-icon">⚡</div>
@@ -748,8 +713,8 @@
                 src="uploads/logo.png"
                 alt="logo"
                 style="
-                  width: 60px;
-                  height: 60px;
+                  width: 300px;
+                  height: 150px;
                   object-fit: contain;
                   margin: 0 auto 16px;
                 "
@@ -763,17 +728,17 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">Vaše ime i prezime *</label>
+                  <label class="form-label">Ime i Prezime *</label>
                   <input
                     class="form-input"
                     type="text"
-                    placeholder="Marija Petrović"
+                    placeholder="Marko Marković"
                     id="f-ime"
                     required
                   />
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Telefon / WhatsApp *</label>
+                  <label class="form-label">Kontakt Telefon *</label>
                   <input
                     class="form-input"
                     type="tel"
@@ -789,7 +754,7 @@
                 <input
                   class="form-input"
                   type="email"
-                  placeholder="vasa@email.com"
+                  placeholder="markomarkovic@gmail.com"
                   id="f-email"
                   required
                 />
@@ -824,8 +789,8 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">Datum proslave *</label>
-                  <input class="form-input" type="date" id="f-datum" required />
+                  <label class="form-label">Datum i vreme proslave *</label>
+                  <input class="form-input" type="datetime-local" id="f-datum" required />
                 </div>
                 <div class="form-group">
                   <label class="form-label">Lokacija</label>
@@ -843,7 +808,7 @@
                 <input
                   class="form-input"
                   type="text"
-                  placeholder="npr. Janko &amp; Jana / Marija / Sofija..."
+                  placeholder="Janko &amp; Jana / Marija / Sofija..."
                   id="f-imena"
                   required
                 />
@@ -861,10 +826,10 @@
               <button class="form-submit" onclick="submitForm()">
                 Pošalji narudžbinu →
               </button>
-              <p class="form-note-small">
+              <!-- <p class="form-note-small">
                 Javićemo Vam se u roku od <strong>2–4 sata</strong>. Nema
                 obaveze — razgovarajmo prvo! 🤝
-              </p>
+              </p> -->
             </div>
 
             <!-- Success poruka -->
@@ -876,10 +841,10 @@
                 <strong>2–4 sata</strong> na broj/email koji ste naveli.<br /><br />
                 Možete nas kontaktirati i direktno na Instagramu:
                 <a
-                  href="https://instagram.com/e_pozivnica.rs"
+                  href="https://instagram.com/epozivnicaorg"
                   target="_blank"
                   style="color: var(--gold-d); font-weight: 600"
-                  >@e_pozivnica.rs</a
+                  >@epozivnicaorg</a
                 >
               </p>
             </div>
@@ -895,7 +860,7 @@
           <div>
             <div class="f-brand-logo">
               <img src="uploads/logo.png" alt="logo" />
-              <span class="f-brand-name">e_pozivnica.rs</span>
+              <span class="f-brand-name">epozivnicaorg</span>
             </div>
             <p class="f-tagline">
               Digitalne pozivnice za svaki povod. Elegantno, personalizovano,
@@ -903,7 +868,7 @@
             </p>
             <a
               class="f-ig"
-              href="https://instagram.com/e_pozivnica.rs"
+              href="https://instagram.com/epozivnicaorg"
               target="_blank"
               rel="noopener"
             >
@@ -927,7 +892,7 @@
                   stroke="none"
                 />
               </svg>
-              @e_pozivnica.rs
+              @epozivnicaorg
             </a>
           </div>
           <div>
@@ -953,10 +918,10 @@
             <div class="f-col-title">Kontakt</div>
             <ul class="f-links">
               <li>
-                <a href="mailto:hello@e-pozivnica.rs">hello@e-pozivnica.rs</a>
+                <a href="mailto:kontakt@epozivnicaorg">kontakt@epozivnica.org</a>
               </li>
               <li>
-                <a href="https://instagram.com/e_pozivnica.rs" target="_blank"
+                <a href="https://instagram.com/epozivnicaorg" target="_blank"
                   >Instagram DM</a
                 >
               </li>
@@ -965,8 +930,8 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <span>© 2026 e_pozivnica.rs — Sva prava zadržana</span>
-          <span>Made with ♥ u Srbiji</span>
+          <span>© 2026 epozivnicaorg — Sva prava zadržana</span>
+          <!-- <span>Made with ♥ u Srbiji</span> -->
         </div>
       </div>
     </footer>

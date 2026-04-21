@@ -2,6 +2,32 @@
    e_pozivnica.rs — Glavni JavaScript
    ═══════════════════════════════════════════════ */
 
+// ── SMOOTH SCROLL BEZ # U URL-U ──
+// Intercept sve href="#section" linkove — skroluj bez dodavanja # u URL
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      // Zatvori mobilni meni ako je otvoren
+      document.querySelector('.nav-inner')?.classList.remove('menu-open');
+
+      const target = link.getAttribute("href");
+      if (target === "#") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        history.replaceState(null, "", window.location.pathname);
+        return;
+      }
+      const el = document.querySelector(target);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth" });
+        // Ažuriraj URL bez # da ostane čist
+        history.pushState(null, "", window.location.pathname);
+      }
+    });
+  });
+});
+
 // ── SCROLL REVEAL ──
 const obs = new IntersectionObserver(
   (entries) => {
@@ -42,24 +68,46 @@ function submitForm() {
     return;
   }
 
-  // Slanje na Google Forms u pozadini (no-cors)
-  const formData = new FormData();
-  // ⚠️ ZAMENITI sa pravim Entry ID-jevima iz vašeg Google Forms-a
-  formData.append("entry.1", ime);
-  formData.append("entry.2", tel);
-  formData.append("entry.3", email);
-  formData.append("entry.4", tip);
-  formData.append("entry.5", paket);
-  formData.append("entry.6", datum);
-  formData.append("entry.7", document.getElementById("f-lok").value);
-  formData.append("entry.8", imena);
-  formData.append("entry.9", document.getElementById("f-napomena").value);
+  const GOOGLE_FORM_ID = "1FAIpQLSfcoFHtuAk4u_8KUx6R89Cf3zQmL-kIaV_2WVzcK7zgr1zV3A"; // ⚠️ ZAMENITI sa pravim ID iz viewform URL-a!
 
-  fetch("https://forms.gle/ZwNYQig7HsLEMxuh7", {
-    method: "POST",
-    body: formData,
-    mode: "no-cors",
-  }).catch(() => {}); // tišina — fallback je Instagram DM
+  // Parsuj datetime-local vrednost (format: "2025-06-14T17:00")
+  const dt = datum ? new Date(datum) : null;
+  const dtYear   = dt ? dt.getFullYear() : "";
+  const dtMonth  = dt ? dt.getMonth() + 1 : "";
+  const dtDay    = dt ? dt.getDate() : "";
+  let   dtHour   = dt ? dt.getHours() : "";
+  const dtMinute = dt ? String(dt.getMinutes()).padStart(2, "0") : "";
+  const dtAmPm   = dt ? (dtHour >= 12 ? "PM" : "AM") : "";
+  if (dtHour > 12) dtHour -= 12;
+  if (dtHour === 0) dtHour = 12;
+
+  const params = new URLSearchParams();
+  params.append("emailAddress",      email);                                           // Email
+  params.append("entry.1827375957",  ime);                                             // Ime i Prezime
+  params.append("entry.4705190",     tel);                                             // Kontakt telefon
+  params.append("entry.718505163",   tip);                                             // Tip pozivnice
+  params.append("entry.1406882663",  paket);                                           // Paket
+  // Datum i Vreme proslave — Google Date+Time tip šalje odvojeno
+  params.append("entry.1421344001_year",   dtYear);
+  params.append("entry.1421344001_month",  dtMonth);
+  params.append("entry.1421344001_day",    dtDay);
+  params.append("entry.1421344001_hour",   dtHour);
+  params.append("entry.1421344001_minute", dtMinute);
+  params.append("entry.1421344001_meridiem", dtAmPm);
+  params.append("entry.1840648943",  document.getElementById("f-lok").value);         // Lokacija
+  params.append("entry.1305175406",  imena);                                           // Ime(na) na pozivnici
+  params.append("entry.1620895950",  document.getElementById("f-napomena").value);    // Napomena
+
+  // Google Forms prima no-cors POST na /formResponse endpoint
+  fetch(
+    `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+      mode: "no-cors",
+    },
+  ).catch(() => {}); // tišina — fallback je Instagram DM
 
   // Prikaži success poruku
   document.getElementById("formFields").classList.add("hide");

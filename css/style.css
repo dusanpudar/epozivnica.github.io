@@ -172,7 +172,7 @@ nav.scrolled {
 }
 
 .nav-logo img {
-  width: 64px;
+  width: 120px;
   height: 64px;
   object-fit: contain;
 }
@@ -1408,6 +1408,32 @@ footer {
   .nav-links,
   .nav-cta {
     display: none;
+  }
+
+  /* Mobilni meni — otvoren */
+  .nav-inner.menu-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--cream, #faf7f2);
+    padding: 18px 24px 22px;
+    gap: 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,.10);
+    z-index: 999;
+    border-top: 1px solid rgba(0,0,0,.07);
+  }
+
+  .nav-inner.menu-open .nav-links li {
+    border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+
+  .nav-inner.menu-open .nav-links a {
+    display: block;
+    padding: 12px 0;
+    font-size: 15px;
   }
 
   .hamburger {
