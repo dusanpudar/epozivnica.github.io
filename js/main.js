@@ -68,46 +68,26 @@ function submitForm() {
     return;
   }
 
-  const GOOGLE_FORM_ID = "1FAIpQLSfcoFHtuAk4u_8KUx6R89Cf3zQmL-kIaV_2WVzcK7zgr1zV3A"; // ⚠️ ZAMENITI sa pravim ID iz viewform URL-a!
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz126Vk5RlxJ5Qh95xfiIPuwegyqqIoKgYZWWsY3CeBdGsuFBb9BAZqPqgTLtQdtrer/exec";
 
-  // Parsuj datetime-local vrednost (format: "2025-06-14T17:00")
-  const dt = datum ? new Date(datum) : null;
-  const dtYear   = dt ? dt.getFullYear() : "";
-  const dtMonth  = dt ? dt.getMonth() + 1 : "";
-  const dtDay    = dt ? dt.getDate() : "";
-  let   dtHour   = dt ? dt.getHours() : "";
-  const dtMinute = dt ? String(dt.getMinutes()).padStart(2, "0") : "";
-  const dtAmPm   = dt ? (dtHour >= 12 ? "PM" : "AM") : "";
-  if (dtHour > 12) dtHour -= 12;
-  if (dtHour === 0) dtHour = 12;
+  const payload = {
+    email:    email,
+    ime:      ime,
+    tel:      tel,
+    tip:      tip,
+    paket:    paket,
+    datum:    datum,
+    lokacija: document.getElementById("f-lok").value,
+    imena:    imena,
+    napomena: document.getElementById("f-napomena").value
+  };
 
-  const params = new URLSearchParams();
-  params.append("emailAddress",      email);                                           // Email
-  params.append("entry.1827375957",  ime);                                             // Ime i Prezime
-  params.append("entry.4705190",     tel);                                             // Kontakt telefon
-  params.append("entry.718505163",   tip);                                             // Tip pozivnice
-  params.append("entry.1406882663",  paket);                                           // Paket
-  // Datum i Vreme proslave — Google Date+Time tip šalje odvojeno
-  params.append("entry.1421344001_year",   dtYear);
-  params.append("entry.1421344001_month",  dtMonth);
-  params.append("entry.1421344001_day",    dtDay);
-  params.append("entry.1421344001_hour",   dtHour);
-  params.append("entry.1421344001_minute", dtMinute);
-  params.append("entry.1421344001_meridiem", dtAmPm);
-  params.append("entry.1840648943",  document.getElementById("f-lok").value);         // Lokacija
-  params.append("entry.1305175406",  imena);                                           // Ime(na) na pozivnici
-  params.append("entry.1620895950",  document.getElementById("f-napomena").value);    // Napomena
-
-  // Google Forms prima no-cors POST na /formResponse endpoint
-  fetch(
-    `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-      mode: "no-cors",
-    },
-  ).catch(() => {}); // tišina — fallback je Instagram DM
+  fetch(APPS_SCRIPT_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify(payload),
+    mode: "no-cors",
+  }).catch(() => {});
 
   // Prikaži success poruku
   document.getElementById("formFields").classList.add("hide");
