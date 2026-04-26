@@ -68,7 +68,7 @@ function submitForm() {
     return;
   }
 
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz126Vk5RlxJ5Qh95xfiIPuwegyqqIoKgYZWWsY3CeBdGsuFBb9BAZqPqgTLtQdtrer/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwSrFqKlpmDo0nOiiU0LIVqdHmjzBJAzKzp-314yxmD67QbBA4WUoL3I4p9o65OVlHz/exec";
 
   const payload = {
     token:    "ep2025-secure",
