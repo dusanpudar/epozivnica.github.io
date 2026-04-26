@@ -1153,6 +1153,7 @@
     <!-- ══ SUCCESS POPUP ══ -->
     <div class="popup-overlay" id="successPopup">
       <div class="popup-box">
+        <div class="popup-confetti" id="popupConfetti"></div>
         <div class="popup-icon">✉️</div>
         <div class="popup-title">Narudžbina primljena!</div>
         <p class="popup-text">
@@ -1162,8 +1163,8 @@
           Možete nas kontaktirati i direktno na Instagramu:
           <a href="https://instagram.com/epozivnicaorg" target="_blank">@epozivnicaorg</a>
         </p>
-        <button class="popup-close" onclick="document.getElementById('successPopup').classList.remove('show')">
-          Zatvori
+        <button class="popup-close" onclick="closePopup()">
+          U redu, hvala! 👍
         </button>
       </div>
     </div>

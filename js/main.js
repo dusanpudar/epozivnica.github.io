@@ -91,11 +91,61 @@ function submitForm() {
   }).catch(() => {});
 
   // Prikaži popup
-  document.getElementById("successPopup").classList.add("show");
+  showSuccessPopup();
   document.getElementById("formFields").classList.add("hide");
 }
 
-// ── TWEAKS PANEL (Claude edit mode) ──
+// ── SUCCESS POPUP ──
+function showSuccessPopup() {
+  const popup = document.getElementById("successPopup");
+  popup.classList.add("show");
+
+  // Confetti
+  const container = document.getElementById("popupConfetti");
+  container.innerHTML = "";
+  const colors = ["#c49a45", "#e8c87a", "#f0d89a", "#a07830", "#fff8e7", "#d4af6a"];
+  for (let i = 0; i < 48; i++) {
+    const el = document.createElement("div");
+    el.className = "confetti-piece";
+    el.style.cssText = `
+      left: ${Math.random() * 100}%;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      width: ${4 + Math.random() * 8}px;
+      height: ${4 + Math.random() * 8}px;
+      border-radius: ${Math.random() > 0.5 ? "50%" : "2px"};
+      animation-duration: ${1.5 + Math.random() * 2}s;
+      animation-delay: ${Math.random() * 0.8}s;
+    `;
+    container.appendChild(el);
+  }
+
+  // Success zvuk — Web Audio API (ne treba fajl)
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const notes = [523, 659, 784, 1047]; // C5, E5, G5, C6
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = freq;
+      osc.type = "sine";
+      const t = ctx.currentTime + i * 0.12;
+      gain.gain.setValueAtTime(0, t);
+      gain.gain.linearRampToValueAtTime(0.18, t + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+      osc.start(t);
+      osc.stop(t + 0.4);
+    });
+  } catch (_) {}
+}
+
+function closePopup() {
+  document.getElementById("successPopup").classList.remove("show");
+  window.location.reload();
+}
+
+
 window.addEventListener("message", (e) => {
   if (e.data?.type === "__activate_edit_mode")
     document.getElementById("tweaksPanel").style.display = "block";
