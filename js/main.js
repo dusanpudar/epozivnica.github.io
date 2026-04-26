@@ -71,6 +71,7 @@ function submitForm() {
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz126Vk5RlxJ5Qh95xfiIPuwegyqqIoKgYZWWsY3CeBdGsuFBb9BAZqPqgTLtQdtrer/exec";
 
   const payload = {
+    token:    "ep2025-secure",
     email:    email,
     ime:      ime,
     tel:      tel,
@@ -89,9 +90,9 @@ function submitForm() {
     mode: "no-cors",
   }).catch(() => {});
 
-  // Prikaži success poruku
+  // Prikaži popup
+  document.getElementById("successPopup").classList.add("show");
   document.getElementById("formFields").classList.add("hide");
-  document.getElementById("formSuccess").classList.add("show");
 }
 
 // ── TWEAKS PANEL (Claude edit mode) ──

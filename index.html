@@ -3,11 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Digitalne pozivnice za svaki povod</title>
-    <meta
-      name="description"
-      content="Elegantne, personalizovane digitalne pozivnice za venčanje, krštenje, rođendan i svaki poseban povod."
-    />
+    <title>epozivnicaorg — Digitalne pozivnice</title>
+
+    <!-- SEO Meta -->
+    <meta name="description" content="Elegantne, personalizovane digitalne pozivnice za venčanje, krštenje, rođendan i svaki poseban povod. Brza izrada, dostava za 24h." />
+    <meta name="keywords" content="digitalne pozivnice, e-pozivnica, pozivnica za venčanje, pozivnica za krštenje, pozivnica za rođendan, online pozivnica, Srbija" />
+    <meta name="author" content="epozivnicaorg" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://epozivnica.org/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://epozivnica.org/" />
+    <meta property="og:title" content="epozivnicaorg — Digitalne pozivnice" />
+    <meta property="og:description" content="Elegantne, personalizovane digitalne pozivnice za venčanje, krštenje, rođendan i svaki poseban povod." />
+    <meta property="og:image" content="https://epozivnica.org/uploads/logo.png" />
+    <meta property="og:locale" content="sr_RS" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="epozivnicaorg — Digitalne pozivnice" />
+    <meta name="twitter:description" content="Elegantne, personalizovane digitalne pozivnice za venčanje, krštenje, rođendan i svaki poseban povod." />
+    <meta name="twitter:image" content="https://epozivnica.org/uploads/logo.png" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1133,5 +1150,23 @@
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
+    <!-- ══ SUCCESS POPUP ══ -->
+    <div class="popup-overlay" id="successPopup">
+      <div class="popup-box">
+        <div class="popup-icon">✉️</div>
+        <div class="popup-title">Narudžbina primljena!</div>
+        <p class="popup-text">
+          Hvala Vam! Javićemo Vam se u roku od <strong>2–4 sata</strong> na broj/email koji ste naveli.
+        </p>
+        <p class="popup-text">
+          Možete nas kontaktirati i direktno na Instagramu:
+          <a href="https://instagram.com/epozivnicaorg" target="_blank">@epozivnicaorg</a>
+        </p>
+        <button class="popup-close" onclick="document.getElementById('successPopup').classList.remove('show')">
+          Zatvori
+        </button>
+      </div>
+    </div>
+
   </body>
 </html>
